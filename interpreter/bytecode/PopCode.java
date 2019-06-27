@@ -9,7 +9,8 @@ public class PopCode extends ByteCode {
         this.numberOfPops = Integer.parseInt(args.get(0));
     }
     public void execute(VirtualMachine vm) {
-
+        for(int i = 0; i < numberOfPops; i++)
+            vm.popRunTimeStack();
     }
     public String toString() {
         return "POP " + this.numberOfPops;

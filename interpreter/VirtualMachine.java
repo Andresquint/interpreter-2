@@ -6,11 +6,11 @@ import interpreter.bytecode.ByteCode;
 public class VirtualMachine {
 
     private RunTimeStack runStack;
-    private Stack returnAddrs;
+    private Stack<Integer> returnAddrs;
     private Program program;
     private int pc;
     private boolean isRunning;
-    private boolean dumpState = true;
+    private boolean dumpState = false;
 
     protected VirtualMachine(Program program) {
         this.program = program;
@@ -35,5 +35,58 @@ public class VirtualMachine {
     public void stopProgram() {
         this.isRunning = false;
     }
+
+    public void addFrame(int offset) {
+        this.runStack.newFrameAt(offset);
+    }
+
+    public void pushRunTimeStack(int value) {
+        this.runStack.push(value);
+    }
+
+    public int popRetAddrs() {
+        return this.returnAddrs.pop();
+    }
+
+    public int popRunTimeStack() {
+        return this.runStack.pop();
+    }
+
+    public int getPC() {
+        return this.pc;
+    }
+
+    public void setPC(int setPC) {
+        this.pc = setPC;
+    }
+
+    public void pushRetAddrs(int pc) {
+        this.returnAddrs.push(pc);
+    }
+
+    public void dumpOn() {
+        this.dumpState = true;
+    }
+
+    public void dumpOff() {
+        this.dumpState = false;
+    }
+
+    public void loadRunTimeStack (int offset) {
+        this.runStack.load(offset);
+    }
+
+    public void popFramePointer() {
+        this.runStack.popFrame();
+    }
+
+    public void store(int offset) {
+        this.runStack.store(offset);
+    }
+
+    public void writeToScreen() {
+        System.out.println(this.runStack.peek());
+    }
+
 
 }

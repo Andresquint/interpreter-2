@@ -15,5 +15,61 @@ public class RunTimeStack {
         // point of our language, so its frame pointer is 0.
         framePointer.add(0);
     }
-    
+
+    public void dump() {
+
+    }
+
+    // returns the top of the stack without removing the item
+    public int peek() {
+        return runTimeStack.get(runTimeStack.size() - 1);
+    }
+
+    // removes an item from the top of the stack and returns it
+    public int pop() {
+        int topOfRTS = this.peek();
+        this.runTimeStack.remove(runTimeStack.size() - 1);
+        return topOfRTS;
+    }
+
+    // creates a new frame in the runtime stack class. The parameter offset is used
+    // to denote how many slots down from the top of runtime stack for starting a new fram.
+    public void newFrameAt(int offset) {
+        this.framePointer.push(this.runTimeStack.size() - offset);
+    }
+
+    // Pop the top frame when we return from a function.
+    public void popFrame() {
+        int returnValue = this.pop();
+        int topStackFrame = this.framePointer.pop();
+        while(this.runTimeStack.size() - 1 >= topStackFrame) {
+            if(!runTimeStack.isEmpty())
+                this.pop();
+        }
+        this.push(returnValue);
+    }
+
+    // Used to store values into variables. Store will pop the top value of the stack and
+    // replace the value at the given offset in the current frame. The value stored is returned.
+    public int store(int offset) {
+        int topValueStack = this.pop();
+        this.runTimeStack.set(this.framePointer.peek() + offset, topValueStack);
+        return topValueStack;
+    }
+
+    // Used to load variables onto the rts from a given offset within the current frame.
+    // This means we will go to the offset in the current frame, copy the value and push it to the top of the stack.
+    // No values should be removed with load.
+    public int load(int offset) {
+        int value = this.runTimeStack.get(this.framePointer.peek() + offset);
+        this.push(value);
+        return value;
+    }
+
+    // Used to load literal values onto the rts. For example lit 5 will call push with val
+    // being 5
+    public Integer push(Integer val) {
+        this.runTimeStack.add(val);
+        return val;
+    }
 }

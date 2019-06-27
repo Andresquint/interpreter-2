@@ -8,7 +8,7 @@ public class WriteCode extends ByteCode {
 
     }
     public void execute(VirtualMachine vm) {
-
+        vm.writeToScreen();
     }
     public String toString() {
         return "WRITE";

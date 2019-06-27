@@ -12,7 +12,9 @@ public class FalseBranchCode extends ByteCode {
     }
 
     public void execute(VirtualMachine vm) {
-
+        if(vm.popRunTimeStack() == 0) {
+            vm.setPC(resolvedAddress );
+        }
     }
 
     public String toString() {

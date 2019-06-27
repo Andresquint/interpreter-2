@@ -55,6 +55,8 @@ public class ByteCodeLoader extends Object {
             System.out.println(e);
         }
 
+
+
         loadedProgram.resolveAddrs();
         return loadedProgram;
     }

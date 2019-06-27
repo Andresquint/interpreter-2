@@ -4,18 +4,18 @@ import interpreter.VirtualMachine;
 import java.util.ArrayList;
 
 public class ArgsCode extends ByteCode {
-    int numberOfArgs;
+    private int offset;
 
     public void init(ArrayList<String> args) {
-        this.numberOfArgs = Integer.parseInt(args.get(0));
+        this.offset = Integer.parseInt(args.get(0));
     }
 
     public void execute(VirtualMachine vm) {
-
+        vm.addFrame(offset);
     }
 
    public String toString() {
-        return "ARGS " + numberOfArgs;
+        return "ARGS " + offset;
     }
 }
 

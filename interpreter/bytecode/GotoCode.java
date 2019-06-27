@@ -12,7 +12,7 @@ public class GotoCode extends ByteCode {
     }
 
     public void execute(VirtualMachine vm) {
-
+        vm.setPC(resolvedAddress);
     }
 
     public String toString() {

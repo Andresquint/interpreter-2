@@ -8,10 +8,12 @@ public class CallCode extends ByteCode {
     public String symbolicAddress;
     public int resolvedAddress;
     public void init(ArrayList<String> args) {
-        this.symbolicAddress = args.get(0);
+        symbolicAddress = args.get(0);
     }
 
     public void execute(VirtualMachine vm) {
+        vm.pushRetAddrs(vm.getPC());
+        vm.setPC(resolvedAddress );
 
     }
 
