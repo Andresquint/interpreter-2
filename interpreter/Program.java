@@ -1,11 +1,13 @@
 package interpreter;
 
 import java.util.ArrayList;
-import interpreter.bytecode.ByteCode;
+import java.util.HashMap;
+
+import interpreter.bytecode.*;
 
 public class Program {
 
-    public ArrayList<ByteCode> program;
+    private ArrayList<ByteCode> program;
 
     public Program() {
         program = new ArrayList<>();
@@ -32,10 +34,26 @@ public class Program {
      * @param program Program object that holds a list of ByteCodes
      */
     public void resolveAddrs() {
+        HashMap<String, Integer> labelAddresses = new HashMap();
 
+        // Loop through finding all instances Label storing symbolicAddress as key and literalAddress as value
+        for(ByteCode it: program) {
+            if (it instanceof LabelCode) {
+                labelAddresses.put(((LabelCode) it).symbolicAddress, program.indexOf(it));
+            }
+        }
+
+        // Abstraction for jump code
+
+        // Loop through finding GOTO, FALSEBRANCH, CALL replacing symbolicAddress
+        for (ByteCode it: program) {
+            if (it instanceof GotoCode) {
+                ((GotoCode) it).resolvedAddress = labelAddresses.get(((GotoCode) it).symbolicAddress);
+            } else if (it instanceof FalseBranchCode) {
+                ((FalseBranchCode)it).resolvedAddress = labelAddresses.get(((FalseBranchCode) it).symbolicAddress);
+            } else if (it instanceof CallCode) {
+                ((CallCode)it).resolvedAddress = labelAddresses.get(((CallCode) it).symbolicAddress);
+            }
+        }
     }
-
-
-
-
 }

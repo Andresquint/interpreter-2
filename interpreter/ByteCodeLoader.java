@@ -45,7 +45,6 @@ public class ByteCodeLoader extends Object {
                 currentByteCode = token.nextToken();
                 Class c = Class.forName("interpreter.bytecode." + CodeTable.getClassName(currentByteCode));
                 ByteCode bc = (ByteCode) c.getDeclaredConstructor().newInstance(); // how
-                int i = 0;
                 while(token.hasMoreTokens()){
                     args.add(token.nextToken());
                 }
@@ -56,11 +55,7 @@ public class ByteCodeLoader extends Object {
             System.out.println(e);
         }
 
-
-        for(int x = 0; x < loadedProgram.program.size(); x++) {
-            System.out.println(loadedProgram.program.get(x));
-        }
-
+        loadedProgram.resolveAddrs();
         return loadedProgram;
     }
 }

@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 
 public class CallCode extends ByteCode {
+    public String symbolicAddress;
+    public int resolvedAddress;
     public void init(ArrayList<String> args) {
-
+        this.symbolicAddress = args.get(0);
     }
 
     public void execute(VirtualMachine vm) {
@@ -14,6 +16,6 @@ public class CallCode extends ByteCode {
     }
 
     public String toString() {
-        return "CALL";
+        return "CALL " + this.resolvedAddress;
     }
 }
