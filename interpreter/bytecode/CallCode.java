@@ -13,11 +13,11 @@ public class CallCode extends ByteCode {
 
     public void execute(VirtualMachine vm) {
         vm.pushRetAddrs(vm.getPC());
-        vm.setPC(resolvedAddress );
+        vm.setPC(resolvedAddress - 1);
 
     }
 
     public String toString() {
-        return "CALL " + this.resolvedAddress;
+        return "CALL " + this.symbolicAddress + " " + this.resolvedAddress;
     }
 }

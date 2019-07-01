@@ -26,6 +26,9 @@ public class VirtualMachine {
             code.execute(this);
             if(dumpState) {
                 System.out.println(code);
+                runStack.dump();
+
+
             }
             pc++;
         }
@@ -45,7 +48,9 @@ public class VirtualMachine {
     }
 
     public int popRetAddrs() {
-        return this.returnAddrs.pop();
+        if(!this.returnAddrs.isEmpty())
+            return this.returnAddrs.pop();
+        return 0;
     }
 
     public int popRunTimeStack() {

@@ -36,25 +36,25 @@ public class BopCode extends ByteCode {
                     vm.pushRunTimeStack(0);
                 } break;
             case  "<=" :
-                if(op1 <= op2) {
+                if(op2 <= op1) {
                     vm.pushRunTimeStack(1);
                 } else {
                     vm.pushRunTimeStack(0);
                 } break;
             case  ">"  :
-                if(op1 > op2) {
+                if(op2 > op1) {
                     vm.pushRunTimeStack(1);
                 } else {
                     vm.pushRunTimeStack(0);
                 } break;
             case  ">=" :
-                if(op1 >= op2) {
+                if(op2 >= op1) {
                     vm.pushRunTimeStack(1);
                 } else {
                     vm.pushRunTimeStack(0);
                 } break;
             case  "<"  :
-                if(op1 < op2) {
+                if(op2 < op1) {
                     vm.pushRunTimeStack(1);
                 } else {
                     vm.pushRunTimeStack(0);

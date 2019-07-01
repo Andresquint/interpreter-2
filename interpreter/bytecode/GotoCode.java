@@ -12,10 +12,10 @@ public class GotoCode extends ByteCode {
     }
 
     public void execute(VirtualMachine vm) {
-        vm.setPC(resolvedAddress);
+        vm.setPC(resolvedAddress - 1);
     }
 
     public String toString() {
-        return "GOTO " + this.resolvedAddress;
+        return "GOTO " + this.symbolicAddress+ " " + this.resolvedAddress;
     }
 }

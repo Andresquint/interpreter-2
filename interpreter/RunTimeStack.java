@@ -17,16 +17,38 @@ public class RunTimeStack {
     }
 
     public void dump() {
+        for(int i = 0; i < runTimeStack.size(); i++) {
 
+            System.out.print(runTimeStack.get(i));
+
+        }
+        System.out.println();
+        for(int j = 0; j < framePointer.size(); j++)
+            System.out.print(framePointer.get(j) + " ");
+        System.out.println();
+
+    }
+
+    public int sizeOfStack() {
+        return runTimeStack.size();
+    }
+
+    public void valueAt ( int location ) {
+         System.out.println(runTimeStack.get(location));
     }
 
     // returns the top of the stack without removing the item
     public int peek() {
-        return runTimeStack.get(runTimeStack.size() - 1);
+        if(!runTimeStack.isEmpty())
+            return runTimeStack.get(runTimeStack.size() - 1);
+        return 0;
     }
 
     // removes an item from the top of the stack and returns it
     public int pop() {
+        if(runTimeStack.isEmpty())
+            return 0;
+
         int topOfRTS = this.peek();
         this.runTimeStack.remove(runTimeStack.size() - 1);
         return topOfRTS;
@@ -71,5 +93,9 @@ public class RunTimeStack {
     public Integer push(Integer val) {
         this.runTimeStack.add(val);
         return val;
+    }
+
+    public boolean isFrame(int currentPosition) {
+        return this.framePointer.contains(currentPosition);
     }
 }

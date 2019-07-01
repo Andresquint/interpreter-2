@@ -13,11 +13,11 @@ public class FalseBranchCode extends ByteCode {
 
     public void execute(VirtualMachine vm) {
         if(vm.popRunTimeStack() == 0) {
-            vm.setPC(resolvedAddress );
+            vm.setPC(resolvedAddress - 1 );
         }
     }
 
     public String toString() {
-        return "FALSEBRANCH " + this.resolvedAddress;
+        return "FALSEBRANCH " + this.symbolicAddress + " " + this.resolvedAddress;
     }
 }
