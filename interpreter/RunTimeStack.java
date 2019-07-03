@@ -17,24 +17,26 @@ public class RunTimeStack {
     }
 
     public void dump() {
-        for(int i = 0; i < runTimeStack.size(); i++) {
+        // Loop through framePointer then rts
+        // StringJoiner
 
-            System.out.print(runTimeStack.get(i));
+        for(int value: this.runTimeStack)
+            System.out.print(value + " ");
+        System.out.println();
+        for(int frame: this.framePointer)
+            System.out.print(frame + " ");
+        System.out.println();
+
+
+        for (int currentFrame = 0; currentFrame < this.framePointer.size(); currentFrame++) {
+            System.out.print(this.framePointer.get(currentFrame) + " ");
 
         }
         System.out.println();
-        for(int j = 0; j < framePointer.size(); j++)
-            System.out.print(framePointer.get(j) + " ");
-        System.out.println();
 
-    }
 
-    public int sizeOfStack() {
-        return runTimeStack.size();
-    }
 
-    public void valueAt ( int location ) {
-         System.out.println(runTimeStack.get(location));
+
     }
 
     // returns the top of the stack without removing the item
