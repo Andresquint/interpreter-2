@@ -18,7 +18,7 @@ public class RunTimeStack {
 
     public void dump() {
         // Loop through framePointer then rts
-        // StringJoiner
+
 
         for(int value: this.runTimeStack)
             System.out.print(value + " ");
@@ -26,11 +26,32 @@ public class RunTimeStack {
         for(int frame: this.framePointer)
             System.out.print(frame + " ");
         System.out.println();
+        System.out.println("rts: " + this.runTimeStack.size());
+        System.out.println("fptr: " + this.framePointer.size());
 
 
         for (int currentFrame = 0; currentFrame < this.framePointer.size(); currentFrame++) {
-            System.out.print(this.framePointer.get(currentFrame) + " ");
-
+            if(this.runTimeStack.isEmpty() && this.framePointer.size() == 1) {
+                System.out.print("[ ]");
+            } else if (this.runTimeStack.isEmpty() && this.framePointer.size() == 2) {
+                System.out.print("[ ]");
+            } else if (this.runTimeStack.size() == 1 && this.framePointer.size() == 2) {
+                System.out.print("[ ]" + "[" + this.runTimeStack.get(0) + "]");
+                currentFrame++;
+            } else {
+                int lowerBound = this.framePointer.get(currentFrame);
+                int upperBound;
+                if(lowerBound != this.framePointer.peek())
+                    upperBound = this.framePointer.get((currentFrame + 1));
+                else
+                    upperBound = this.runTimeStack.size();
+                System.out.print("[");
+                for (int j = lowerBound; j < upperBound - 1; j++) {
+                    System.out.print(this.runTimeStack.get(j) + ",");
+                }
+                System.out.print(this.runTimeStack.get(this.runTimeStack.size() - 1));
+                System.out.print("]");
+            }
         }
         System.out.println();
 
