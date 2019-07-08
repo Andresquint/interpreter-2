@@ -19,17 +19,6 @@ public class RunTimeStack {
     public void dump() {
         // Loop through framePointer then rts
 
-
-        for(int value: this.runTimeStack)
-            System.out.print(value + " ");
-        System.out.println();
-        for(int frame: this.framePointer)
-            System.out.print(frame + " ");
-        System.out.println();
-        System.out.println("rts: " + this.runTimeStack.size());
-        System.out.println("fptr: " + this.framePointer.size());
-
-
         for (int currentFrame = 0; currentFrame < this.framePointer.size(); currentFrame++) {
             if(this.runTimeStack.isEmpty() && this.framePointer.size() == 1) {
                 System.out.print("[ ]");
@@ -118,7 +107,4 @@ public class RunTimeStack {
         return val;
     }
 
-    public boolean isFrame(int currentPosition) {
-        return this.framePointer.contains(currentPosition);
-    }
 }
