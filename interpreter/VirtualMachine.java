@@ -90,7 +90,7 @@ public class VirtualMachine {
     }
 
     public void writeToScreen() {
-        System.out.println(this.runStack.peek());
+        System.out.print(this.runStack.peek());
     }
 
 

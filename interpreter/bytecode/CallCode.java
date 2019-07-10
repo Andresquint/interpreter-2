@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 
 public class CallCode extends ByteCode {
-    public String symbolicAddress;
-    public int resolvedAddress;
+    private String symbolicAddress;
+    private int resolvedAddress;
     public void init(ArrayList<String> args) {
         symbolicAddress = args.get(0);
     }
@@ -19,5 +19,18 @@ public class CallCode extends ByteCode {
 
     public String toString() {
         return "CALL " + this.symbolicAddress + " " + this.resolvedAddress;
+    }
+
+    public String getSymbolicAddress() {
+        return symbolicAddress;
+    }
+    public void setSymbolicAddress (String symbolicAddress) {
+        this.symbolicAddress = symbolicAddress;
+    }
+    public int getResolvedAddresss() {
+        return this.resolvedAddress;
+    }
+    public void setResolvedAddress(int resolvedAddress) {
+        this.resolvedAddress = resolvedAddress;
     }
 }
